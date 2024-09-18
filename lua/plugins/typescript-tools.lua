@@ -1,0 +1,23 @@
+-- return {
+--     'pmizio/typescript-tools.nvim',
+--     config = function ()
+--         require("typescript-tools").setup {
+--             filetypes = {
+--                 "javascript",
+--                 "javascriptreact",
+--                 "typescript",
+--                 "typescriptreact",
+--
+--                 "vue", -- This needed to be added.
+--             },
+--             settings = {
+--                 tsserver_plugins = {
+--                     -- Seemingly this is enough, no name, location or languages needed.
+--                     "@vue/typescript-plugin",
+--                 },
+--             },
+--         }
+--     end
+-- }
+
+return {}
