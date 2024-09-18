@@ -1,6 +1,17 @@
 return {
     "neovim/nvim-lspconfig",
+    dependencies = {
+        {
+            "SmiteshP/nvim-navbuddy",
+            dependencies = {
+                "SmiteshP/nvim-navic",
+                "MunifTanjim/nui.nvim"
+            },
+            opts = { lsp = { auto_attach = true } }
+        }
+    },
     config = function()
+        local navbuddy = require("nvim-navbuddy")
         local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
         local lspconfig = require("lspconfig")
@@ -55,8 +66,9 @@ return {
         }
 
         lspconfig.ts_ls.setup {
-            on_attach = function(client)
+            on_attach = function(client, bufnr)
                 client.server_capabilities.semanticTokensProvider = nil
+                navbuddy.attach(client, bufnr)
             end,
             capabilities = capabilities,
             init_options = {
@@ -76,5 +88,9 @@ return {
                 'vue'
             },
         }
+
+        lspconfig.golangci_lint_ls.setup {}
+        lspconfig.gopls.setup {}
     end
+
 }

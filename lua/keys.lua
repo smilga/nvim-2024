@@ -17,9 +17,6 @@ vim.keymap.set("n", "<leader>k", "<cmd>BD!<cr>", { desc = "Kill Buffer" })
 vim.keymap.set("n", "gd", function()
     vim.lsp.buf.definition({ on_list = on_list })
 end, opts)
-vim.keymap.set("n", "<leader>f", function()
-    require("telescope.builtin").find_files({ find_command = { "rg", "--files", "--iglob", "!.git" } })
-end, { desc = "Find Files" })
 
 vim.keymap.set("n", "<leader>cr", function()
     vim.lsp.buf.rename()
@@ -48,12 +45,14 @@ vim.keymap.set("n", "<leader>cn", "<cmd>:PhpActor new_class<cr>", { desc = "New 
 vim.keymap.set("n", "<leader>ci", function()
     vim.lsp.buf.implementation()
 end, { desc = "implementations" })
-vim.keymap.set("n", "<leader>n", "<cmd>:NvimTreeToggle<cr>", { desc = "File Tree" })
-vim.keymap.set("n", "<leader>m", "<cmd>:NvimTreeFindFileToggle<cr>", { desc = "File Tree Focus" })
 vim.keymap.set("n", "<leader>d", "<cmd>:Trouble diagnostics toggle<cr>", { desc = "Trouble" })
 vim.keymap.set("n", "<leader>hh", function()
     print(vim.inspect(vim.treesitter.get_captures_at_cursor()))
 end, { desc = "HL Group" })
+
+vim.keymap.set("n", "<leader>l", function()
+    require("telescope.builtin").buffers({ sort_lastused = true })
+end, { desc = "Buffers" })
 
 -- Git related
 vim.keymap.set("n", "<leader>go", "<cmd>:DiffviewOpen<cr>", { desc = "Diff View Open" })
@@ -69,3 +68,13 @@ vim.keymap.set("n", "<leader>gl", "<cmd>:Gitsigns blame_line<cr>", { desc = "Lin
 vim.keymap.set("n", "<leader>gj", "<cmd>:Telescope git_status<cr>", { desc = "Status" })
 vim.keymap.set("n", "<leader>gf", "<cmd>:Fugit2<cr>", { desc = "Fugit2 🎉" })
 vim.keymap.set("n", "<leader>gg", "<cmd>:Git<cr>", { desc = "Git" })
+
+-- Working with files
+vim.keymap.set("n", "<leader>o", "<cmd>:Oil<cr>", { desc = "File buffer 🤯" })
+vim.keymap.set("n", "<leader>n", "<cmd>:NvimTreeToggle<cr>", { desc = "File Tree" })
+vim.keymap.set("n", "<leader>m", "<cmd>:NvimTreeFindFileToggle<cr>", { desc = "File Tree Focus" })
+vim.keymap.set("n", "<leader>f",
+    function() require("telescope.builtin").find_files({ find_command = { "rg", "--files", "--iglob", "!.git" } }) end,
+    { desc = "Find Files" }
+)
+vim.keymap.set("n", "<leader>p", "<cmd>:Navbuddy<cr>", { desc = "File structure" })
