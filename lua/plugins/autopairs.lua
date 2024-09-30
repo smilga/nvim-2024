@@ -7,6 +7,7 @@ return {
 
         npairs.setup({
             -- your setup options here
+            ignore_next_char = "[%w%.]"
         })
 
         -- Custom rule for PHP method autocomplete with semicolon
@@ -14,7 +15,14 @@ return {
             Rule("%)$", ";", "php")
                 :use_regex(true)
                 :replace_endpair(function(opts)
-                    return opts.prev_char:match("%)$") and ";" or ""
+                    local line = opts.line
+                    local col = opts.col
+                    local char_after = line:sub(col + 1, col + 1)
+                    if opts.prev_char:match("%)$") and char_after:match("^%s*$") then
+                        return ";"
+                    else
+                        return ""
+                    end
                 end)
                 :set_end_pair_length(0)
         })
