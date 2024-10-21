@@ -77,4 +77,6 @@ vim.keymap.set("n", "<leader>f",
     function() require("telescope.builtin").find_files({ find_command = { "rg", "--files", "--iglob", "!.git" } }) end,
     { desc = "Find Files" }
 )
+vim.keymap.set("n", "<leader>s", "<cmd>:Telescope live_grep<cr>", { desc = "Find in files" })
 vim.keymap.set("n", "<leader>p", "<cmd>:Navbuddy<cr>", { desc = "File structure" })
+vim.keymap.set('i', '<S-Enter>', function() require("copilot.suggestion").accept() end, { noremap = true, silent = true })
