@@ -59,11 +59,10 @@ return {
         }
 
         lspconfig.eslint.setup {
-            on_attach = function(client, bufnr)
-                vim.api.nvim_create_autocmd("BufWritePre", {
-                    buffer = bufnr,
-                    command = "EslintFixAll",
-                })
+            on_attach = function(client)
+                if not client.server_capabilities.semanticTokensProvider then
+                    client.server_capabilities.semanticTokensProvider = nil
+                end
             end,
             capabilities = capabilities,
             filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json' },
@@ -71,10 +70,13 @@ return {
 
         lspconfig.ts_ls.setup {
             on_attach = function(client, bufnr)
-                client.server_capabilities.semanticTokensProvider = nil
                 navbuddy.attach(client, bufnr)
-                -- client.server_capabilities.documentFormattingProvider = false
-                -- client.server_capabilities.documentRangeFormattingProvider = false
+                client.server_capabilities.documentFormattingProvider = false
+                client.server_capabilities.documentRangeFormattingProvider = false
+
+                if not client.server_capabilities.semanticTokensProvider then
+                    client.server_capabilities.semanticTokensProvider = nil
+                end
             end,
             capabilities = capabilities,
             init_options = {

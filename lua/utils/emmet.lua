@@ -12,6 +12,15 @@ M.emmet_comparator = function(entry1, entry2)
     local kind1 = entry1:get_kind()
     local kind2 = entry2:get_kind()
 
+    local is_luasnip1 = entry1.source.name == "luasnip"
+    local is_luasnip2 = entry2.source.name == "luasnip"
+
+    if is_luasnip1 and not is_luasnip2 then
+        return true
+    elseif is_luasnip2 and not is_luasnip1 then
+        return false
+    end
+
     -- Emmet snippets have kind 15 (Snippet)
     if kind1 == 15 or kind2 == 15 then
         if is_inside_tag() then

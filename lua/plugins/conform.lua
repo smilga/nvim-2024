@@ -26,6 +26,7 @@ return {
             formatters_by_ft = {
                 vue = { "ceslint", "crustywind" },
                 typescript = { "ceslint" },
+                javascript = { "ceslint" },
                 lua = { "stylua" },
                 go = { "goimports" },
                 -- Use the "*" filetype to run formatters on all filetypes.
