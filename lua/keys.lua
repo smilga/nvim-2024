@@ -71,7 +71,6 @@ vim.keymap.set("n", "<leader>gg", "<cmd>:Git<cr>", { desc = "Git" })
 
 -- Working with files
 vim.keymap.set("n", "<leader>o", "<cmd>:Oil<cr>", { desc = "File buffer 🤯" })
-vim.keymap.set("n", "<leader>n", "<cmd>:NvimTreeToggle<cr>", { desc = "File Tree" })
 vim.keymap.set("n", "<leader>m", "<cmd>:NvimTreeFindFileToggle<cr>", { desc = "File Tree Focus" })
 vim.keymap.set("n", "<leader>f",
     function() require("telescope.builtin").find_files({ find_command = { "rg", "--files", "--iglob", "!.git" } }) end,
