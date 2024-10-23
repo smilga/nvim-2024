@@ -51,7 +51,7 @@ return {
 
         lspconfig.volar.setup {
             capabilities = capabilities,
-            filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json' },
+            filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
             on_attach = function(client)
                 client.server_capabilities.documentFormattingProvider = false
                 client.server_capabilities.documentRangeFormattingProvider = false
@@ -65,7 +65,7 @@ return {
                 end
             end,
             capabilities = capabilities,
-            filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json' },
+            filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
         }
 
         lspconfig.ts_ls.setup {
@@ -164,5 +164,6 @@ return {
             }
         })
         lspconfig.tailwindcss.setup {}
+        lspconfig.jsonls.setup {}
     end
 }
