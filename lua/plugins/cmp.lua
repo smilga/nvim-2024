@@ -32,17 +32,20 @@ return {
     dependencies = {
         {
             "hrsh7th/cmp-nvim-lsp",
+            'hrsh7th/cmp-buffer',
             'saadparwaiz1/cmp_luasnip',
         },
     },
     config = function()
         local cmp = require('cmp')
         local luasnip = require("luasnip")
+        local cmp_buffer = require('cmp_buffer')
 
         cmp.setup {
             sorting = {
                 comparators = {
                     require('utils.emmet').emmet_comparator,
+                    function(...) return cmp_buffer:compare_locality(...) end,
                     cmp.config.compare.offset,
                     cmp.config.compare.exact,
                     cmp.config.compare.score,
@@ -111,7 +114,18 @@ return {
             sources = {
                 { name = 'luasnip' },
                 { name = 'nvim_lsp' },
-                { name = 'buffer' },
+                {
+                    name = 'buffer',
+                    option = {
+                        get_bufnrs = function()
+                            local bufs = {}
+                            for _, win in ipairs(vim.api.nvim_list_wins()) do
+                                bufs[vim.api.nvim_win_get_buf(win)] = true
+                            end
+                            return vim.tbl_keys(bufs)
+                        end
+                    }
+                }
             },
         }
 

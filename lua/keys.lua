@@ -79,3 +79,9 @@ vim.keymap.set("n", "<leader>f",
 vim.keymap.set("n", "<leader>s", "<cmd>:Telescope live_grep<cr>", { desc = "Find in files" })
 vim.keymap.set("n", "<leader>p", "<cmd>:Navbuddy<cr>", { desc = "File structure" })
 vim.keymap.set('i', '<S-Enter>', function() require("copilot.suggestion").accept() end, { noremap = true, silent = true })
+
+vim.keymap.set('n', '<leader>cca', function()
+    vim.lsp.buf.code_action({
+        filter = function(ca) return ca.isPreferred end, -- Optional: show only preferred actions
+    })
+end, { desc = 'Code actions from all LSPs' })

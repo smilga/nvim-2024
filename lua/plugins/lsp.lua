@@ -52,6 +52,11 @@ return {
         lspconfig.volar.setup {
             capabilities = capabilities,
             filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+            init_options = {
+                languageFeatures = {
+                    renameFileRefactoring = true,
+                },
+            },
             on_attach = function(client)
                 client.server_capabilities.documentFormattingProvider = false
                 client.server_capabilities.documentRangeFormattingProvider = false

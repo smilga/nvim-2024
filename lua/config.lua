@@ -21,6 +21,7 @@ vim.g.loaded_netrwPlugin = 1
 vim.opt.termguicolors = true
 vim.opt.pumheight = 15
 vim.opt.relativenumber = true
+vim.opt.formatoptions = vim.opt.formatoptions - { 't' }
 
 vim.filetype.add({
     extension = {
@@ -29,4 +30,3 @@ vim.filetype.add({
 })
 
 vim.diagnostic.config({ virtual_text = false })
-
