@@ -57,6 +57,7 @@ return {
             },
             formatting = {
                 format = function(entry, vim_item)
+                    local tw_item = require("tailwindcss-colorizer-cmp").formatter(entry, vim_item)
                     -- Kind icons
                     vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatenates the icons with the name of the item kind
                     -- Source
@@ -67,6 +68,11 @@ return {
                         nvim_lua = "[Lua]",
                         latex_symbols = "[LaTeX]",
                     })[entry.source.name]
+
+                    if tw_item.kind == "XX" then
+                        vim_item.menu = tw_item.kind
+                    end
+
                     return vim_item
                 end
             },
