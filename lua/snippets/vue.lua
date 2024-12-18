@@ -6,14 +6,38 @@ local s = ls.snippet
 local fmt = require("luasnip.extras.fmt").fmt
 --
 local tts = s("tts", fmt([[
-<template>
-{}
-</template>
-
 <script lang="ts" setup>
 console.log('Hello world!')
 </script>
 
+<template>
+{}
+</template>
+]], {
+    i(1, ""),
+}))
+
+local prps = s("prps", fmt([[
+defineProps<{{
+  {}
+}}>()]],
+    {
+        i(1, ""),
+    }))
+
+local dprps = s("dprps", fmt([[
+const props = withDefaults(defineProps<{{
+  {}
+}}>(), {{
+}});
+]], {
+    i(1, ""),
+}))
+
+local emt = s("emt", fmt([[
+const emit = defineEmits<{{
+  (e: '{}'): void
+}}>()
 ]], {
     i(1, ""),
 }))
@@ -32,12 +56,15 @@ export default {{
 ]], {
     i(1, ""),
 }))
---
+
 local log = s({ trig = "log" }, fmt([[console.log({})]], { i(1, "") }))
 --
 table.insert(snippets, tts)
 table.insert(snippets, ttl)
 table.insert(snippets, log)
+table.insert(snippets, prps)
+table.insert(snippets, dprps)
+table.insert(snippets, emt)
 --
 return snippets
 --

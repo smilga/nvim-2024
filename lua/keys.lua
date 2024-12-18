@@ -15,7 +15,8 @@ vim.keymap.set("n", "<right>", "<C-W><C-L>")
 vim.keymap.set("n", "<leader>k", "<cmd>BD!<cr>", { desc = "Kill Buffer" })
 
 vim.keymap.set("n", "gd", function()
-    vim.lsp.buf.definition({ on_list = on_list })
+    require("utils.vue").gd_with_dts_resolver()
+    -- vim.lsp.buf.definition({ on_list = on_list })
 end, opts)
 
 vim.keymap.set("n", "<leader>cr", function()

@@ -88,7 +88,7 @@ return {
                 plugins = {
                     {
                         name = "@vue/typescript-plugin",
-                        location = "/Users/smilga/.nvm/versions/node/v20.13.1/lib/node_modules/@vue/typescript-plugin",
+                        location = "/Users/smilga/.nvm/versions/node/v22.11.0/lib/node_modules/@vue/typescript-plugin",
                         languages = { "javascript", "typescript", "vue" },
                     },
                 },
@@ -118,10 +118,9 @@ return {
                 },
             },
         })
-        lspconfig.quick_lint_js.setup {
-            capabilities = capabilities,
-        }
-
+        -- lspconfig.quick_lint_js.setup {
+        --     capabilities = capabilities,
+        -- }
         lspconfig.intelephense.setup {
             capabilities = capabilities,
             on_attach = function(client)
@@ -129,8 +128,8 @@ return {
                 client.server_capabilities.implementationProvider = true
                 client.server_capabilities.referencesProvider = true
                 client.server_capabilities.definitionProvider = true
-                client.server_capabilities.documentFormattingProvider = false
-                client.server_capabilities.documentRangeFormattingProvider = false
+                client.server_capabilities.documentFormattingProvider = true
+                client.server_capabilities.documentRangeFormattingProvider = true
             end,
             init_options = {
                 licenceKey = "/Users/smilga/.config/intelephense_licence.txt",
@@ -146,17 +145,17 @@ return {
                 },
             },
         }
-        lspconfig.phpactor.setup {
-            capabilities = capabilities,
-            on_attach = function(client)
-                client.server_capabilities.hoverProvider = false
-                client.server_capabilities.implementationProvider = false
-                client.server_capabilities.referencesProvider = false
-                client.server_capabilities.definitionProvider = false
-                client.server_capabilities.documentFormattingProvider = false
-                client.server_capabilities.documentRangeFormattingProvider = false
-            end,
-        }
+        -- lspconfig.phpactor.setup {
+        --     capabilities = capabilities,
+        --     on_attach = function(client)
+        --         client.server_capabilities.hoverProvider = true
+        --         client.server_capabilities.implementationProvider = true
+        --         client.server_capabilities.referencesProvider = true
+        --         client.server_capabilities.definitionProvider = true
+        --         client.server_capabilities.documentFormattingProvider = true
+        --         client.server_capabilities.documentRangeFormattingProvider = true
+        --     end,
+        -- }
         lspconfig.emmet_ls.setup({
             capabilities = capabilities,
             filetypes = { "css", "eruby", "html", "javascript", "javascriptreact", "less", "sass", "scss", "svelte", "pug", "typescriptreact", "vue" },
@@ -170,5 +169,6 @@ return {
         })
         lspconfig.tailwindcss.setup {}
         lspconfig.jsonls.setup {}
+        lspconfig.docker_compose_language_service.setup {}
     end
 }
