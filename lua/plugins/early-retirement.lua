@@ -3,7 +3,7 @@ return {
     event = "VeryLazy",
     config = function()
         require("early-retirement").setup({
-            retirementAgeMins = 10,
+            retirementAgeMins = 45,
             ignoreUnsavedChangesBufs = false,
             deleteBufferWhenFileDeleted = true,
         })

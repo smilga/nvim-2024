@@ -47,7 +47,9 @@ return {
         })
         require('avante_lib').load()
         require('avante').setup({
-            -- Your config here!
+            windows = {
+                position = 'right'
+            }
         })
     end
 }

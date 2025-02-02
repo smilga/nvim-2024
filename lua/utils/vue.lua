@@ -36,9 +36,9 @@ function M.gd_with_dts_resolver()
 
         original_handler(err, result, ctx, config)
 
-        vim.defer_fn(function()
-            local new_buf = vim.api.nvim_get_current_buf()
-            local new_file = vim.api.nvim_buf_get_name(new_buf)
+        vim.schedule(function()
+            local dtsBuf = vim.api.nvim_get_current_buf()
+            local new_file = vim.api.nvim_buf_get_name(dtsBuf)
 
             if new_file:match("components.d.ts$") then
                 local component_path = resolve_path()
@@ -48,7 +48,7 @@ function M.gd_with_dts_resolver()
                     vim.notify("Component file not found!", vim.log.levels.WARN)
                 end
             end
-        end, 0)
+        end)
     end
 
     vim.lsp.buf.definition()

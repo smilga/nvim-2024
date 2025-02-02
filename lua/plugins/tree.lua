@@ -9,6 +9,9 @@ return {
                 enable = true,
                 update_root = false,
             },
+            view = {
+                width = 40,
+            },
             git = {
                 enable = true,
                 ignore = false,
@@ -17,4 +20,3 @@ return {
         })
     end,
 }
-

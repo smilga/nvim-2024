@@ -42,20 +42,20 @@ return {
         local cmp_buffer = require('cmp_buffer')
 
         cmp.setup {
-            sorting = {
-                comparators = {
-                    require('utils.emmet').emmet_comparator,
-                    cmp.config.compare.exact,
-                    function(...) return cmp_buffer:compare_locality(...) end,
-                    cmp.config.compare.recently_used,
-                    cmp.config.compare.score,
-                    cmp.config.compare.offset,
-                    cmp.config.compare.kind,
-                    cmp.config.compare.sort_text,
-                    cmp.config.compare.length,
-                    cmp.config.compare.order,
-                },
-            },
+            -- sorting = {
+            -- comparators = {
+            --     cmp.config.compare.exact,
+            --     function(...) return cmp_buffer:compare_locality(...) end,
+            --     cmp.config.compare.recently_used,
+            --     require('utils.emmet').emmet_comparator,
+            --     cmp.config.compare.score,
+            --     cmp.config.compare.offset,
+            --     cmp.config.compare.kind,
+            --     cmp.config.compare.sort_text,
+            --     cmp.config.compare.length,
+            --     cmp.config.compare.order,
+            -- },
+            -- },
             formatting = {
                 format = function(entry, vim_item)
                     local tw_item = require("tailwindcss-colorizer-cmp").formatter(entry, vim_item)
