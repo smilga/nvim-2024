@@ -12,7 +12,7 @@ return {
     },
     config = function()
         local navbuddy = require("nvim-navbuddy")
-        local capabilities = require('cmp_nvim_lsp').default_capabilities()
+        local capabilities = require('blink.cmp').get_lsp_capabilities()
 
         local lspconfig = require("lspconfig")
         lspconfig.lua_ls.setup {
@@ -118,33 +118,6 @@ return {
                 },
             },
         })
-        -- lspconfig.quick_lint_js.setup {
-        --     capabilities = capabilities,
-        -- }
-        -- lspconfig.intelephense.setup {
-        --     capabilities = capabilities,
-        --     on_attach = function(client)
-        --         client.server_capabilities.hoverProvider = true
-        --         client.server_capabilities.implementationProvider = true
-        --         client.server_capabilities.referencesProvider = true
-        --         client.server_capabilities.definitionProvider = true
-        --         client.server_capabilities.documentFormattingProvider = true
-        --         client.server_capabilities.documentRangeFormattingProvider = true
-        --     end,
-        --     init_options = {
-        --         licenceKey = "/Users/smilga/.config/intelephense_licence.txt",
-        --     },
-        --     settings = {
-        --         intelephense = {
-        --             files = {
-        --                 maxSize = 3000000,
-        --             },
-        --             completion = {
-        --                 insertUseDeclaration = true, -- Automatically add use declarations
-        --             },
-        --         },
-        --     },
-        -- }
         lspconfig.phpactor.setup {
             capabilities = capabilities,
             on_attach = function(client)
