@@ -28,3 +28,11 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.opt_local.expandtab = true
     end,
 })
+
+-- vim.cmd.colorscheme "tokyonight-storm"
+
+vim.cmd.colorscheme "catppuccin-macchiato"
+
+local colors = require('catppuccin.palettes').get_palette("macchiato")
+vim.api.nvim_set_hl(0, '@vue.directive_value', { fg = colors.yellow, bg = colors.none, bold = true })
+vim.api.nvim_set_hl(0, '@constructor', { fg = colors.blue, bg = colors.none, bold = true })

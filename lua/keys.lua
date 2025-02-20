@@ -71,6 +71,15 @@ vim.keymap.set("n", "<leader>gj", "<cmd>:Telescope git_status<cr>", { desc = "St
 vim.keymap.set("n", "<leader>gf", "<cmd>:Fugit2<cr>", { desc = "Fugit2 🎉" })
 vim.keymap.set("n", "<leader>gg", "<cmd>:Git<cr>", { desc = "Git" })
 
+vim.keymap.set("n", "<leader>wq", function()
+    vim.cmd("NvimTreeClose")
+    vim.cmd("wqa")
+end, { desc = "🚪wqa" })
+
+vim.keymap.set("n", "<leader>wa", function()
+    vim.cmd("wa")
+end, { desc = "💿" })
+
 -- Working with files
 vim.keymap.set("n", "<leader>o", "<cmd>:Oil<cr>", { desc = "File buffer 🤯" })
 vim.keymap.set("n", "<leader>m", "<cmd>:NvimTreeFindFileToggle<cr>", { desc = "File Tree Focus" })

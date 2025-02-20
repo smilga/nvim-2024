@@ -10,10 +10,30 @@ return {
     ---@type blink.cmp.Config
     opts = {
         enabled = function()
-            return not vim.bo.buftype ~= "prompt"
+            -- you list filetypes where you don't want blink blink to work here
+            local disabled_filetypes = { "TelescopePrompt", "DressingInput" }
+            return not vim.tbl_contains(disabled_filetypes, vim.bo.filetype) and vim.b.completion ~= false
         end,
         completion = {
-            menu = { auto_show = function(ctx) return ctx.mode ~= 'cmdline' end }
+            documentation = {
+                auto_show = true,
+                auto_show_delay_ms = 500,
+            },
+            menu = {
+                auto_show = function(ctx)
+                    return ctx.mode ~= "cmdline" or not vim.tbl_contains({ '/', '?' }, vim.fn.getcmdtype())
+                end,
+            },
+            keyword = { range = "prefix" },
+            list = {
+                selection = {
+                    preselect = false,
+                    auto_insert = true,
+                },
+            },
+        },
+        signature = {
+            enabled = true,
         },
         snippets = { preset = 'luasnip' },
         -- 'default' for mappings similar to built-in completion
@@ -36,11 +56,14 @@ return {
             -- Adjusts spacing to ensure icons are aligned
             nerd_font_variant = 'mono'
         },
-
         -- Default list of enabled providers defined so that you can extend it
         -- elsewhere in your config, without redefining it, due to `opts_extend`
         sources = {
             default = { 'lsp', 'path', 'snippets', 'buffer' },
+            min_keyword_length = function(ctx)
+                if ctx.mode == 'cmdline' and string.find(ctx.line, ' ') == nil then return 3 end
+                return 0
+            end
         },
     },
     opts_extend = { "sources.default" }

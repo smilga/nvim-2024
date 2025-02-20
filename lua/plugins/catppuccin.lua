@@ -68,10 +68,5 @@ return {
                 -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
             },
         })
-        vim.cmd.colorscheme "catppuccin-macchiato"
-
-        local colors = require('catppuccin.palettes').get_palette("macchiato")
-        vim.api.nvim_set_hl(0, '@vue.directive_value', { fg = colors.yellow, bg = colors.none, bold = true })
-        vim.api.nvim_set_hl(0, '@constructor', { fg = colors.blue, bg = colors.none, bold = true })
     end
 }
