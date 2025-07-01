@@ -49,7 +49,7 @@ return {
         require('avante').setup({
             windows = {
                 position = 'right'
-            }
+            },
         })
     end
 }

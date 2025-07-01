@@ -4,6 +4,8 @@ require("keys")
 
 require("lazy").setup("plugins")
 
+require("utils.avante").setup()
+
 vim.diagnostic.config({
     signs = {
         text = {

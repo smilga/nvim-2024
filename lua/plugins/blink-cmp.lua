@@ -11,7 +11,7 @@ return {
     opts = {
         enabled = function()
             -- you list filetypes where you don't want blink blink to work here
-            local disabled_filetypes = { "TelescopePrompt", "DressingInput" }
+            local disabled_filetypes = { "TelescopePrompt", "DressingInput", "AvanteInput" }
             return not vim.tbl_contains(disabled_filetypes, vim.bo.filetype) and vim.b.completion ~= false
         end,
         completion = {
@@ -42,7 +42,6 @@ return {
         -- See the full "keymap" documentation for information on defining your own keymap.
         keymap = {
             preset = 'enter',
-            ['<Tab>'] = { 'select_next' },
             ['<S-Tab>'] = { 'select_prev' },
             ['<CR>'] = { 'accept', 'fallback' },
         },
