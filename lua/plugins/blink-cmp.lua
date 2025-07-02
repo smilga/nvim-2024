@@ -14,6 +14,23 @@ return {
             local disabled_filetypes = { "TelescopePrompt", "DressingInput", "AvanteInput" }
             return not vim.tbl_contains(disabled_filetypes, vim.bo.filetype) and vim.b.completion ~= false
         end,
+        cmdline = {
+            keymap = {
+                ['<Tab>'] = { 'show', 'accept' },
+                -- Arrow keys are not used in cmdline mode
+                ['<Down>'] = { 'select_next', 'show' },
+                ['<Up>'] = { 'select_prev', 'show' },
+            },
+            completion = {
+                menu = {
+                    auto_show = function(ctx)
+                        return vim.fn.getcmdtype() == ':'
+                        -- enable for inputs as well, with:
+                        -- or vim.fn.getcmdtype() == '@'
+                    end,
+                },
+            }
+        },
         completion = {
             documentation = {
                 auto_show = true,

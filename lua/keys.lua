@@ -12,8 +12,8 @@ vim.keymap.set("n", "<down>", "<C-W><C-J>")
 vim.keymap.set("n", "<up>", "<C-W><C-K>")
 vim.keymap.set("n", "<left>", "<C-W><C-H>")
 vim.keymap.set("n", "<right>", "<C-W><C-L>")
-vim.keymap.set("n", "<leader>q", "<cmd>BD!<cr>", { desc = "Kill Buffer" })
-vim.keymap.set("n", "<leader>k", "<cmd>:b#<cr>", { desc = "Go to previous buffer" })
+vim.keymap.set("n", "<leader>k", "<cmd>BD!<cr>", { desc = "Kill Buffer" })
+vim.keymap.set("n", "<leader>p", "<cmd>:b#<cr>", { desc = "Go to previous buffer" })
 
 vim.keymap.set("n", "gd", function()
     require("utils.vue").gd_with_dts_resolver()
@@ -88,7 +88,7 @@ vim.keymap.set("n", "<leader>f",
     { desc = "Find Files" }
 )
 vim.keymap.set("n", "<leader>s", "<cmd>:Telescope live_grep<cr>", { desc = "Find in files" })
-vim.keymap.set("n", "<leader>p", "<cmd>:Navbuddy<cr>", { desc = "File structure" })
+vim.keymap.set("n", "<leader>u", "<cmd>:Navbuddy<cr>", { desc = "File structure" })
 vim.keymap.set('i', '<S-Enter>', function() require("copilot.suggestion").accept() end, { noremap = true, silent = true })
 
 vim.keymap.set('n', '<leader>cca', function()
