@@ -6,8 +6,6 @@ require("lazy").setup("plugins")
 
 require("utils.avante").setup()
 
-require("lsp")
-
 vim.diagnostic.config({
     signs = {
         text = {

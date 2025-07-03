@@ -3,9 +3,11 @@ return {
     config = function()
         require("conform").setup({
             formatters = {
-                ceslint = function(bufnr)
+                eslint_d = function(bufnr)
                     return {
-                        command = vim.cmd("lua vim.lsp.buf.format()"),
+                        command = "eslint_d",
+                        args = { "--fix-to-stdout", "--stdin", "--stdin-filename", "$FILENAME" },
+                        stdin = true,
                     }
                 end,
                 crustywind = function(bufnr)
@@ -24,9 +26,9 @@ return {
             },
             notify_on_error = true,
             formatters_by_ft = {
-                vue = { "ceslint", "crustywind" },
-                typescript = { "ceslint" },
-                javascript = { "ceslint" },
+                vue = { "eslint_d", "crustywind" },
+                typescript = { "eslint_d" },
+                javascript = { "eslint_d" },
                 lua = { "stylua" },
                 go = { "goimports" },
                 -- Use the "*" filetype to run formatters on all filetypes.
