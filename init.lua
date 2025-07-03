@@ -4,6 +4,8 @@ require("keys")
 
 require("lazy").setup("plugins")
 
+require("lsp").setup()
+
 require("utils.avante").setup()
 
 vim.diagnostic.config({
