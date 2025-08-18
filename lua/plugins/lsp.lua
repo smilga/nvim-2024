@@ -152,12 +152,52 @@ return {
             },
         }
 
+        local tailwindcss = {
+            cmd = { 'tailwindcss-language-server', '--stdio' },
+            filetypes = {
+                'aspnetcorerazor', 'astro', 'astro-markdown', 'blade', 'clojure', 'django-html',
+                'htmldjango', 'edge', 'eelixir', 'elixir', 'ejs', 'erb', 'eruby', 'gohtml',
+                'gohtmltmpl', 'haml', 'handlebars', 'hbs', 'html', 'html-eex', 'heex', 'jade',
+                'leaf', 'liquid', 'markdown', 'mdx', 'mustache', 'njk', 'nunjucks', 'php',
+                'razor', 'slim', 'twig', 'css', 'less', 'postcss', 'sass', 'scss', 'stylus',
+                'sugarss', 'javascript', 'javascriptreact', 'reason', 'rescript', 'typescript',
+                'typescriptreact', 'vue', 'svelte', 'templ'
+            },
+            init_options = {
+                userLanguages = {
+                    eelixir = 'html-eex',
+                    eruby = 'erb',
+                    templ = 'html'
+                }
+            },
+            root_markers = {
+                'tailwind.config.js', 'tailwind.config.cjs', 'tailwind.config.mjs',
+                'tailwind.config.ts', 'postcss.config.js', 'postcss.config.cjs',
+                'postcss.config.mjs', 'postcss.config.ts', 'package.json', 'node_modules', '.git'
+            },
+            settings = {
+                tailwindCSS = {
+                    lint = {
+                        cssConflict = 'warning',
+                        invalidApply = 'error',
+                        invalidConfigPath = 'error',
+                        invalidScreen = 'error',
+                        invalidTailwindDirective = 'error',
+                        invalidVariant = 'error',
+                        recommendedVariantOrder = 'warning'
+                    },
+                    validate = true
+                }
+            },
+        }
+
         vim.lsp.config('vtsls', vtsls)
         vim.lsp.config('vue_ls', vue_ls)
         vim.lsp.config('lua_ls', lua_ls)
         vim.lsp.config('gopls', gopls)
         vim.lsp.config('phpactor', phpactor)
         vim.lsp.config('golang_ci_lint_ls', golang_ci_lint_ls)
+        vim.lsp.config('tailwindcss', tailwindcss)
 
         vim.lsp.enable({
             'vtsls',

@@ -21,15 +21,6 @@ return {
                 ['<Down>'] = { 'select_next', 'show' },
                 ['<Up>'] = { 'select_prev', 'show' },
             },
-            completion = {
-                menu = {
-                    auto_show = function(ctx)
-                        return vim.fn.getcmdtype() == ':'
-                        -- enable for inputs as well, with:
-                        -- or vim.fn.getcmdtype() == '@'
-                    end,
-                },
-            }
         },
         completion = {
             documentation = {
@@ -38,7 +29,11 @@ return {
             },
             menu = {
                 auto_show = function(ctx)
-                    return ctx.mode ~= "cmdline" or not vim.tbl_contains({ '/', '?' }, vim.fn.getcmdtype())
+                    if ctx.mode == "cmdline" then
+                        return vim.fn.getcmdtype() == ':' and not vim.tbl_contains({ '/', '?' }, vim.fn.getcmdtype())
+                    else
+                        return ctx.mode ~= "cmdline" or not vim.tbl_contains({ '/', '?' }, vim.fn.getcmdtype())
+                    end
                 end,
             },
             keyword = { range = "prefix" },

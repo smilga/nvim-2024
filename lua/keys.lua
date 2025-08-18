@@ -68,7 +68,7 @@ vim.keymap.set("n", "<leader>gr", "<cmd>:Gitsigns reset_hunk<cr>", { desc = "Res
 vim.keymap.set("n", "<leader>gd", "<cmd>:Gitsigns diffthis<cr>", { desc = "Diff" })
 vim.keymap.set("n", "<leader>gl", "<cmd>:Gitsigns blame_line<cr>", { desc = "Line Blame" })
 vim.keymap.set("n", "<leader>gj", "<cmd>:Telescope git_status<cr>", { desc = "Status" })
-vim.keymap.set("n", "<leader>gf", "<cmd>:Fugit2<cr>", { desc = "Fugit2 🎉" })
+vim.keymap.set("n", "<leader>gf", "<cmd>:Telescope git_files<cr>", { desc = "Git Files" })
 vim.keymap.set("n", "<leader>gg", "<cmd>:Git<cr>", { desc = "Git" })
 
 vim.keymap.set("n", "<leader>wq", function()
