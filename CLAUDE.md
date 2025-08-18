@@ -67,7 +67,7 @@ Uses Blink.cmp (`lua/plugins/blink-cmp.lua`) with:
 ### Git Operations
 - `<leader>go` - DiffviewOpen
 - `<leader>gw` - DiffviewClose
-- `<leader>gf` - Fugit2 interface
+- `<leader>gf` - Git Files (Telescope)
 - `<leader>gh` - Preview hunk
 - `<leader>gs` - Stage hunk
 - `<leader>gr` - Reset hunk

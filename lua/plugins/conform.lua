@@ -10,7 +10,7 @@ return {
                         stdin = true,
                     }
                 end,
-                crustywind = function(bufnr)
+                rustywind = function(bufnr)
                     return {
                         command = "rustywind",
                         args = {
@@ -26,7 +26,7 @@ return {
             },
             notify_on_error = true,
             formatters_by_ft = {
-                vue = { "eslint_d", "crustywind" },
+                vue = { "eslint_d", "rustywind" },
                 typescript = { "eslint_d" },
                 javascript = { "eslint_d" },
                 lua = { "stylua" },
