@@ -11,6 +11,8 @@ return {
         }
     },
     config = function()
+        local capabilities = require('blink.cmp').get_lsp_capabilities()
+
         local vue_language_server_path = vim.fn.stdpath('data') ..
             "/mason/packages/vue-language-server/node_modules/@vue/language-server"
 
@@ -67,9 +69,11 @@ return {
                             payload,
                         },
                     }, { bufnr = context.bufnr }, function(_, r)
-                        local response_data = { { id, r.body } }
-                        ---@diagnostic disable-next-line: param-type-mismatch
-                        client:notify('tsserver/response', response_data)
+                        if r then
+                            local response_data = { { id, r.body } }
+                            ---@diagnostic disable-next-line: param-type-mismatch
+                            client:notify('tsserver/response', response_data)
+                        end
                     end)
                 end
             end,
@@ -114,6 +118,7 @@ return {
         }
 
         local gopls = {
+            capabilities = capabilities,
             cmd = { 'gopls' },
             filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' },
             root_markers = { 'go.work', 'go.mod', '.git' },
@@ -152,12 +157,25 @@ return {
             },
         }
 
+        local jsonls = {
+            on_attach = function(client, bufnr)
+                vim.api.nvim_create_autocmd("BufWritePre", {
+                    buffer = bufnr,
+                    callback = function()
+                        vim.lsp.buf.format({ async = false })
+                    end,
+                })
+            end,
+        }
+
         vim.lsp.config('vtsls', vtsls)
         vim.lsp.config('vue_ls', vue_ls)
         vim.lsp.config('lua_ls', lua_ls)
         vim.lsp.config('gopls', gopls)
         vim.lsp.config('phpactor', phpactor)
         vim.lsp.config('golang_ci_lint_ls', golang_ci_lint_ls)
+        vim.lsp.config('jsonls', jsonls)
+        vim.lsp.config('yaml-language-server', {})
 
         vim.lsp.enable({
             'vtsls',
@@ -168,6 +186,8 @@ return {
             'eslint',
             'golang_ci_lint_ls',
             'tailwindcss',
+            'jsonls',
+            'yaml-language-server',
         })
     end
 }

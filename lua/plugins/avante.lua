@@ -1,7 +1,6 @@
 return {
     "yetone/avante.nvim",
     event = "VeryLazy",
-    lazy = false,
     version = false, -- set this if you want to always pull the latest change
     build = "make",
     -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
@@ -17,7 +16,6 @@ return {
             "HakonHarnes/img-clip.nvim",
             event = "VeryLazy",
             opts = {
-                -- recommended settings
                 default = {
                     embed_image_as_base64 = false,
                     prompt_for_file_name = false,
@@ -39,17 +37,14 @@ return {
         },
     },
     config = function()
-        require('img-clip').setup({
-            -- use recommended settings from above
-        })
-        require('render-markdown').setup({
-            -- use recommended settings from above
-        })
+        require('img-clip').setup()
+        require('render-markdown').setup()
         require('avante_lib').load()
         require('avante').setup({
+            auto_suggestions_provider = 'copilot',
             windows = {
                 position = 'right'
             },
         })
-    end
+    end,
 }
