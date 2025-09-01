@@ -13,6 +13,11 @@ return {
 				if ok_dapui then
 					dapui.close()
 				end
+
+				local ok_avante, avante = pcall(require, "avante")
+				if ok_avante then
+					avante.close_sidebar()
+				end
 			end,
 		})
 	end,
