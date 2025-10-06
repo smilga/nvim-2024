@@ -16,10 +16,8 @@ return {
 		end,
 		cmdline = {
 			keymap = {
-				["<Tab>"] = { "show", "accept" },
-				-- Arrow keys are not used in cmdline mode
-				["<Down>"] = { "select_next", "show" },
-				["<Up>"] = { "select_prev", "show" },
+				["<Tab>"] = { "select_next", "fallback" },
+				["<S-Tab>"] = { "select_prev", "fallback" },
 			},
 			completion = {
 				menu = {
@@ -59,6 +57,23 @@ return {
 		-- See the full "keymap" documentation for information on defining your own keymap.
 		keymap = {
 			preset = "enter",
+			["<Tab>"] = {
+				"snippet_forward",
+				function()
+					return vim.lsp.inline_completion.get()
+				end,
+				function()
+					local ok, supermaven = pcall(require, "supermaven-nvim.completion_preview")
+					if ok and supermaven.has_suggestion() then
+						supermaven.on_accept_suggestion()
+					end
+				end,
+				function()
+					return require("sidekick").nes_jump_or_apply()
+				end,
+				"select_next",
+				"fallback",
+			},
 			["<S-Tab>"] = { "select_prev" },
 			["<CR>"] = { "accept", "fallback" },
 		},

@@ -207,6 +207,9 @@ return {
 			"tailwindcss",
 			"jsonls",
 			"yaml-language-server",
+			"copilot",
 		})
+
+		vim.lsp.inline_completion.enable()
 	end,
 }

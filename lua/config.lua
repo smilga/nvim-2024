@@ -21,13 +21,13 @@ vim.g.loaded_netrwPlugin = 1
 vim.opt.termguicolors = true
 vim.opt.pumheight = 15
 vim.opt.relativenumber = true
-vim.opt.formatoptions = vim.opt.formatoptions - { 't' }
+vim.opt.formatoptions = vim.opt.formatoptions - { "t" }
 vim.opt.laststatus = 3
 
 vim.filetype.add({
-    extension = {
-        ["http"] = "http",
-    },
+	extension = {
+		["http"] = "http",
+	},
 })
 
 vim.diagnostic.config({ virtual_text = false })
