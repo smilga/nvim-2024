@@ -34,23 +34,23 @@ vim.keymap.set("n", "gd", function()
 end, { desc = "Go to definition" })
 
 vim.keymap.set("n", "<leader>cr", function()
-	vim.lsp.buf.rename()
+    vim.lsp.buf.rename()
 end, { desc = "Rename" })
 
 vim.keymap.set("n", "<leader>ca", function()
-	vim.lsp.buf.code_action()
+    vim.lsp.buf.code_action()
 end, { noremap = true, silent = true })
 
 vim.keymap.set("n", "<leader>cf", function()
-	vim.lsp.buf.format()
+    vim.lsp.buf.format()
 end, { desc = "Format" })
 
 vim.keymap.set("n", "K", function()
-	vim.lsp.buf.hover()
+    vim.lsp.buf.hover()
 end, { desc = "Documentation" })
 
 vim.keymap.set("n", "T", function()
-	vim.diagnostic.open_float()
+    vim.diagnostic.open_float()
 end, { desc = "Diagnostics float" })
 
 vim.keymap.set("n", "<leader>cu", "<cmd>:Telescope lsp_references<cr>", { desc = "References" })
@@ -58,7 +58,7 @@ vim.keymap.set("n", "<leader>cd", "<cmd>:Telescope lsp_definitions<cr>", { desc 
 vim.keymap.set("n", "<leader>cs", "<cmd>:Telescope lsp_document_symbols<cr>", { desc = "Symbols" })
 vim.keymap.set("n", "<leader>cn", "<cmd>:PhpActor new_class<cr>", { desc = "New PHP Class" })
 vim.keymap.set("n", "<leader>ci", function()
-	vim.lsp.buf.implementation()
+    vim.lsp.buf.implementation()
 end, { desc = "implementations" })
 vim.keymap.set("n", "<leader>dd", "<cmd>:Trouble diagnostics toggle<cr>", { desc = "Trouble" })
 vim.keymap.set("n", "<leader>db", "<cmd>:DapToggleBreakpoint<cr>", { desc = "Breakpoing" })
@@ -72,11 +72,11 @@ vim.keymap.set("n", "<leader>dr", "<cmd>:lua require('dap').run_to_cursor()<cr>"
 vim.keymap.set("n", "<leader>dt", "<cmd>:lua require('dap-go').debug_test()<cr>", { desc = "Test to cursor" })
 vim.keymap.set("n", "<leader>zz", "<cmd>:ZenMode<cr>", { desc = "Zen mode" })
 vim.keymap.set("n", "<leader>hh", function()
-	print(vim.inspect(vim.treesitter.get_captures_at_cursor()))
+    print(vim.inspect(vim.treesitter.get_captures_at_cursor()))
 end, { desc = "HL Group" })
 
 vim.keymap.set("n", "<leader>l", function()
-	require("telescope.builtin").buffers({ sort_lastused = true })
+    require("telescope.builtin").buffers({ sort_lastused = true })
 end, { desc = "Buffers" })
 
 -- Git related
@@ -95,32 +95,32 @@ vim.keymap.set("n", "<leader>gf", "<cmd>:Fugit2<cr>", { desc = "Fugit2 🎉" })
 vim.keymap.set("n", "<leader>gg", "<cmd>:Git<cr>", { desc = "Git" })
 
 vim.keymap.set("n", "<leader>wq", function()
-	vim.cmd("NvimTreeClose")
-	vim.cmd("wqa")
+    vim.cmd("NvimTreeClose")
+    vim.cmd("wqa")
 end, { desc = "🚪wqa" })
 
 vim.keymap.set("n", "<leader>wa", function()
-	vim.cmd("wa")
+    vim.cmd("wa")
 end, { desc = "💿" })
 
 -- Working with files
 vim.keymap.set("n", "<leader>o", "<cmd>:Fyler<cr>", { desc = "File buffer 🤯" })
 vim.keymap.set("n", "<leader>m", "<cmd>:NvimTreeFindFileToggle<cr>", { desc = "File Tree Focus" })
 vim.keymap.set("n", "<leader>f", function()
-	require("telescope.builtin").find_files({
-		find_command = {
-			"rg",
-			"--files",
-			"--hidden",
-			"--no-ignore",
-			"--iglob",
-			"!.git",
-			"--iglob",
-			"!node_modules",
-			"--iglob",
-			"!vendor",
-		},
-	})
+    require("telescope.builtin").find_files({
+        find_command = {
+            "rg",
+            "--files",
+            "--hidden",
+            "--no-ignore",
+            "--iglob",
+            "!.git",
+            "--iglob",
+            "!node_modules",
+            "--iglob",
+            "!vendor",
+        },
+    })
 end, { desc = "Find Files" })
 vim.keymap.set("n", "<leader>tn", ":tabnew<CR>")
 vim.keymap.set("n", "<leader>tc", ":tabclose<CR>")
@@ -130,13 +130,13 @@ vim.keymap.set("n", ">", ":tabnext<CR>")
 vim.keymap.set("n", "<leader>s", "<cmd>:Telescope live_grep<cr>", { desc = "Find in files" })
 vim.keymap.set("n", "<leader>u", "<cmd>:Navbuddy<cr>", { desc = "File structure" })
 vim.keymap.set("i", "<S-Enter>", function()
-	require("copilot.suggestion").accept()
+    require("copilot.suggestion").accept()
 end, { noremap = true, silent = true })
 
 vim.keymap.set("n", "<leader>cca", function()
-	vim.lsp.buf.code_action({
-		filter = function(ca)
-			return ca.isPreferred
-		end, -- Optional: show only preferred actions
-	})
+    vim.lsp.buf.code_action({
+        filter = function(ca)
+            return ca.isPreferred
+        end, -- Optional: show only preferred actions
+    })
 end, { desc = "Code actions from all LSPs" })
