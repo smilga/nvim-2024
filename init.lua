@@ -33,8 +33,18 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- vim.cmd.colorscheme "tokyonight-storm"
 
-vim.cmd.colorscheme "catppuccin-macchiato"
+vim.cmd.colorscheme("catppuccin-macchiato")
 
-local colors = require('catppuccin.palettes').get_palette("macchiato")
-vim.api.nvim_set_hl(0, '@vue.directive_value', { fg = colors.yellow, bg = colors.none, bold = true })
-vim.api.nvim_set_hl(0, '@constructor', { fg = colors.blue, bg = colors.none, bold = true })
+local colors = require("catppuccin.palettes").get_palette("macchiato")
+vim.api.nvim_set_hl(0, "@vue.directive_value", { fg = colors.yellow, bg = colors.none, bold = true })
+vim.api.nvim_set_hl(0, "@constructor", { fg = colors.blue, bg = colors.none, bold = true })
+
+vim.api.nvim_create_autocmd("BufEnter", {
+    pattern = "diffview://*",
+    callback = function(args)
+        local clients = vim.lsp.get_clients({ bufnr = args.buf })
+        for _, client in pairs(clients) do
+            vim.lsp.buf_detach_client(args.buf, client.id)
+        end
+    end,
+})
