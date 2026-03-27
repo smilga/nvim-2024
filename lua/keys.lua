@@ -133,6 +133,21 @@ vim.keymap.set("i", "<S-Enter>", function()
     require("copilot.suggestion").accept()
 end, { noremap = true, silent = true })
 
+vim.keymap.set("n", "<leader>ccc", function()
+    vim.cmd("enew")
+    vim.api.nvim_buf_set_name(0, "claude")
+    vim.fn.termopen("claude", {
+        env = {
+            TERM = "xterm-256color",
+        },
+        on_exit = function() end,
+    })
+    vim.bo.scrollback = 50000
+    vim.cmd("startinsert")
+    vim.keymap.set("t", "<Esc>", "<Esc>", { buffer = 0, noremap = true })
+    vim.keymap.set("t", "<S-Esc>", [[<C-\><C-n>]], { buffer = 0, noremap = true })
+end, { desc = "Claude Code terminal" })
+
 vim.keymap.set("n", "<leader>cca", function()
     vim.lsp.buf.code_action({
         filter = function(ca)

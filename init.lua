@@ -51,3 +51,9 @@ vim.api.nvim_create_autocmd("BufEnter", {
 
 vim.o.spell = true
 vim.o.spelllang = "en,lv"
+
+vim.api.nvim_create_autocmd("TermOpen", {
+	callback = function()
+		vim.opt_local.spell = false
+	end,
+})

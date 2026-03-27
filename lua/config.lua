@@ -23,6 +23,15 @@ vim.opt.pumheight = 15
 vim.opt.relativenumber = true
 vim.opt.formatoptions = vim.opt.formatoptions - { "t" }
 vim.opt.laststatus = 3
+vim.opt.autoread = true
+
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
+	command = "checktime",
+})
+
+vim.fn.timer_start(1000, function()
+	vim.cmd("checktime")
+end, { ["repeat"] = -1 })
 
 vim.filetype.add({
 	extension = {
