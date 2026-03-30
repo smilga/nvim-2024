@@ -136,7 +136,8 @@ end, { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>ccc", function()
     vim.cmd("enew")
     vim.api.nvim_buf_set_name(0, "claude")
-    vim.fn.termopen("claude", {
+    local buf = vim.api.nvim_get_current_buf()
+    local chan = vim.fn.termopen("claude", {
         env = {
             TERM = "xterm-256color",
         },
@@ -146,6 +147,14 @@ vim.keymap.set("n", "<leader>ccc", function()
     vim.cmd("startinsert")
     vim.keymap.set("t", "<Esc>", "<Esc>", { buffer = 0, noremap = true })
     vim.keymap.set("t", "<S-Esc>", [[<C-\><C-n>]], { buffer = 0, noremap = true })
+    vim.api.nvim_create_autocmd({ "BufEnter", "TermEnter", "FocusGained" }, {
+        buffer = buf,
+        callback = function()
+            vim.defer_fn(function()
+                vim.api.nvim_chan_send(chan, "\x0c")
+            end, 50)
+        end,
+    })
 end, { desc = "Claude Code terminal" })
 
 vim.keymap.set("n", "<leader>cca", function()
